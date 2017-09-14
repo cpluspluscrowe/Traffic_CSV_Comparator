@@ -33,9 +33,12 @@ def FillDictionary(data_name,dict_to_fill,filler = None):
                 else:
                     filler_type = filler
                 val = q[field]
-                key = str(q["A"]) + "-" + str(q["B"]) + "-{0}-".format(filler_type) + time
-                dict_to_fill[key] = val
-
+                try:
+                    key = str(int(q["A"])) + "-" + str(int(q["B"])) + "-{0}-".format(filler_type) + time
+                    dict_to_fill[key] = val
+                except:
+                    key = str(q["A"]) + "-" + str(q["B"]) + "-{0}-".format(filler_type) + time
+                    dict_to_fill[key] = val
 FillDictionary("data_rows",cube)
 FillDictionary("count_rows",canon,"V")
 FillDictionary("speed_rows",canon,"S")

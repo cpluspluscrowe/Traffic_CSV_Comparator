@@ -41,7 +41,7 @@ def WriteToExcel(sheet,l):
         row = row_dict[key]
         if not count.time in excel_columns:
             raise Exception("Problem finding time within excel_counts: " + counts.time)
-        column = int(excel_columns[count.time])
+        column = int(excel_columns[count.time]) - 24
         sheet.range((row,column)).value = count.difference
 
 WriteToExcel(ws_counts,counts)
