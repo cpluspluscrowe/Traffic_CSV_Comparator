@@ -5,10 +5,11 @@ from pprint import pprint
 import unittest
 import numpy
 import math
+from Format_CSV import GetDataFrameFromCsv
 data_path = r"C:\Users\CCrowe\Documents\Traffic\Cube\Compare_CSV\AM_OUT.csv"
 counts_path = r"C:\Users\CCrowe\Documents\Traffic\Cube\Compare_CSV\Counts.csv"
 speeds_path = r"C:\Users\CCrowe\Documents\Traffic\Cube\Compare_CSV\Speeds.csv"
-data = read_csv(data_path)
+data = GetDataFrameFromCsv(r"C:\Users\CCrowe\Documents\Traffic\Cube\Compare_CSV\AM_OUT.csv")
 counts = read_csv(counts_path)
 speeds = read_csv(speeds_path)
 
