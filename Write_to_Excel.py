@@ -1,6 +1,7 @@
 import xlwings as xw
 from Get_Differences import * #Run all, get differences list
 from Dictionaries import excel_columns
+from Linear_Regression import * #will print out statistics
 
 wb = xw.Book(r"C:\Users\CCrowe\Documents\Traffic\Cube\Compare_CSV\Compare_CSVs\Differences.xlsx")
 ws_counts = wb.sheets["Counts"]
