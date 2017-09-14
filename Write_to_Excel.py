@@ -24,6 +24,7 @@ def GetA_B_Sets(counts):
     return list(s)
 
 def WriteToExcel(sheet,l):
+    sheet.range("A2:ZZ700").value = ""
     rows = GetA_B_Sets(l)
     row_dict = {}
     excel_cnt = 2
@@ -32,7 +33,7 @@ def WriteToExcel(sheet,l):
         a = spl[0]
         b = spl[1]
         sheet.range("A" + str(excel_cnt)).value = a
-        sheet.range("A" + str(excel_cnt)).value = b
+        sheet.range("B" + str(excel_cnt)).value = b
         row_dict[row] = excel_cnt
         excel_cnt += 1
     for count in l:
