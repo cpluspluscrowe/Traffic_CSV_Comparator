@@ -26,6 +26,3 @@ def GetDataFrameFromCsv(csv_path):
 
 if __name__ == '__main__':
     data = GetDataFrameFromCsv(r"C:\Users\CCrowe\Documents\Traffic\Cube\Compare_CSV\AM.csv")
-    for row in data.itertuples():
-        print(row)
-        break

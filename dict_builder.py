@@ -1,5 +1,6 @@
 from data_getter import GetDataFrames
 from Dictionaries import translatorAM,translatorPM,counts_dict
+from pprint import pprint
 
 canon = {}
 cube = {}
@@ -24,15 +25,15 @@ def GetFiller(field):
 def FillDictionary(data_name,dict_to_fill,filler = None):
     dr = data[data_name]
     for q in dr:
-        for field in vars(q):
+        for field in q:
             time = GetTime(field)
             if time:
                 if filler == None:
                     filler_type = GetFiller(field)
                 else:
                     filler_type = filler
-                val = getattr(q,field)
-                key = str(getattr(q,"A")) + "-" + str(getattr(q,"B")) + "-{0}-".format(filler_type) + time
+                val = q[field]
+                key = str(q["A"]) + "-" + str(q["B"]) + "-{0}-".format(filler_type) + time
                 dict_to_fill[key] = val
 
 FillDictionary("data_rows",cube)

@@ -9,7 +9,7 @@ from Format_CSV import GetDataFrameFromCsv
 data_path = r"C:\Users\CCrowe\Documents\Traffic\Cube\Compare_CSV\AM_OUT.csv"
 counts_path = r"C:\Users\CCrowe\Documents\Traffic\Cube\Compare_CSV\Counts.csv"
 speeds_path = r"C:\Users\CCrowe\Documents\Traffic\Cube\Compare_CSV\Speeds.csv"
-data = GetDataFrameFromCsv(r"C:\Users\CCrowe\Documents\Traffic\Cube\Compare_CSV\AM_OUT.csv")
+data = GetDataFrameFromCsv(r"C:\Users\CCrowe\Documents\Traffic\Cube\Compare_CSV\AM.csv")
 counts = read_csv(counts_path)
 speeds = read_csv(speeds_path)
 
@@ -57,33 +57,35 @@ class Tester(unittest.TestCase):
                 except:
                     print("Not a number: " + str(value))
 
-
-class Quantity():
-    def __init__(self):
-        pass
-    def SetData(self,row,test):
-        for att,value in zip(row._fields,row):
-            test.TestValue(att,value)
-            setattr(self,str(att),value)
+def CreateListOfDictsFromDataFrame(data):
+    l = []
+    for row in data.itertuples():
+        d = row._asdict()
+        #for x in d:
+        #    print(x,d[x])
+        l.append(d)
+    return l
 
 def GetDataRows(data):
     test = Tester()
     data_rows = []
     for row in data.itertuples():
-        q = Quantity()
-        q.SetData(row,test)
-        data_rows.append(q)
+        d = row._asdict()
+        print(row)
+        for x in d:
+            print(x,d[x])
+        data_rows.append(d)
     return data_rows
 
 def GetDataFrames():
     return {
-'data_rows':GetDataRows(data),
-'count_rows':GetDataRows(counts),
-'speed_rows':GetDataRows(speeds)}
+'data_rows':CreateListOfDictsFromDataFrame(data),
+'count_rows':CreateListOfDictsFromDataFrame(counts),
+'speed_rows':CreateListOfDictsFromDataFrame(speeds)}
 
 
-
-
+if __name__ == '__main__':
+    data = GetDataFrames()
 
 
 
